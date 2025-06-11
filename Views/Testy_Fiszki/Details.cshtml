@@ -1,0 +1,30 @@
+﻿@model ProjektCRUD20510.Models.Testy_Fiszki
+
+@{
+    ViewData["Title"] = "Details";
+}
+
+<h1>Details</h1>
+
+<div>
+    <h4>Testy_Fiszki</h4>
+    <hr />
+    <dl class="row">
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Test)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Test.NazwaTestu)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Fiszka)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Fiszka.Nazwa_ENGLISH)
+        </dd>
+    </dl>
+</div>
+<div>
+    <a asp-action="Edit" asp-controller="Testy_Fiszki" asp-route-id_testu="@Model?.Id_Testu" asp-route-id_fiszki="@Model?.Id_Fiszki">Edit</a> |
+    <a asp-action="Index" asp-controller="Testy_Fiszki">Back to List</a>
+</div>

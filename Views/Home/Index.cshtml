@@ -1,0 +1,11 @@
+﻿@{
+    ViewData["Title"] = "Home Page";
+}
+
+<div class="text-center d-flex flex-column justify-content-center" style="height: 70vh;">
+    <h1 class="display-4 m-5">Witaj w FlashLearn Hub</h1>
+    <div class="d-flex justify-content-center gap-4 m-5">
+        <a asp-controller="Home" asp-action="FiszkiSetup" class="btn btn-primary btn-lg p-5 fs-3">Fiszki</a>
+        <a asp-controller="Testy" asp-action="Index" class="btn btn-primary btn-lg p-5 fs-3">Testy</a>
+    </div>
+</div>

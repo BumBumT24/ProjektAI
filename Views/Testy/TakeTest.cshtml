@@ -1,0 +1,53 @@
+﻿@model ProjektCRUD20510.Models.ViewModels.TestSetupViewModel
+
+@{
+    ViewData["Title"] = "Rozpocznij Test";
+}
+
+<div class="container">
+    <h1 class="mb-4">Zacznij test</h1>
+    <hr />
+    <div class="row justify-content-center">
+        <div class="col-md-6">
+            <form asp-action="TakeTest" asp-controller="Testy" method="post" class="needs-validation" novalidate>
+                <input type="hidden" asp-for="TestId" />
+                <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                <div class="form-group mb-3">
+                    <label class="form-label">Kierunek języka</label>
+                    <select asp-for="Direction" class="form-control" required>
+                        <option value="EngToPol">Angielski na Polski</option>
+                        <option value="PolToEng">Polski na Angielski</option>
+                    </select>
+                    <span asp-validation-for="Direction" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <input type="submit" value="Rozpocznij test" class="btn btn-primary" />
+                </div>
+            </form>
+        </div>
+    </div>
+    <div class="mt-3">
+        <a asp-action="Index" asp-controller="Testy" class="btn btn-secondary">Powrót</a>
+    </div>
+</div>
+
+@section Scripts {
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+    <script>
+        (function () {
+            'use strict';
+            var forms = document.querySelectorAll('.needs-validation');
+            Array.prototype.slice.call(forms).forEach(function (form) {
+                form.addEventListener('submit', function (event) {
+                    if (!form.checkValidity()) {
+                        event.preventDefault();
+                        event.stopPropagation();
+                    }
+                    form.classList.add('was-validated');
+                }, false);
+            });
+        })();
+    </script>
+}

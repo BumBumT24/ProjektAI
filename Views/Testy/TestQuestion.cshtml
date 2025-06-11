@@ -1,0 +1,66 @@
+﻿@model ProjektCRUD20510.Models.ViewModels.TestQuestionViewModel
+
+@{
+    ViewData["Title"] = "Pytanie Testu";
+}
+
+<div class="container">
+    <h1 class="mb-4">Pytanie testu</h1>
+    <h4 class="mb-2">Pytanie @Model.CurrentIndex z @Model.TotalCount</h4>
+    <hr />
+    <div class="row justify-content-center">
+        <div class="col-md-6">
+            <div class="card mx-auto text-center">
+                <div class="card-body">
+                    <h5 class="card-title">
+                        @if (Model.Direction == "EngToPol")
+                        {
+                            @Model.Fiszka.Nazwa_ENGLISH
+                        }
+                        else
+                        {
+                            @Model.Fiszka.Nazwa_PL
+                        }
+                    </h5>
+                </div>
+            </div>
+            <form asp-action="TestQuestion" asp-controller="Testy" method="post" class="mt-4 needs-validation" novalidate>
+                <input type="hidden" asp-for="TestId" />
+                <input type="hidden" asp-for="Fiszka.Id" />
+                <input type="hidden" asp-for="Direction" />
+                <div class="form-group mb-3">
+                    <label class="form-label">Twoja odpowiedź</label>
+                    <input type="text" asp-for="UserAnswer" class="form-control" required />
+                    <span asp-validation-for="UserAnswer" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <input type="submit" value="Następne" class="btn btn-primary" />
+                </div>
+            </form>
+        </div>
+    </div>
+    <div class="mt-3">
+        <a asp-action="Index" asp-controller="Testy" class="btn btn-secondary">Powrót</a>
+    </div>
+</div>
+
+@section Scripts {
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+    <script>
+        (function () {
+            'use strict';
+            var forms = document.querySelectorAll('.needs-validation');
+            Array.prototype.slice.call(forms).forEach(function (form) {
+                form.addEventListener('submit', function (event) {
+                    if (!form.checkValidity()) {
+                        event.preventDefault();
+                        event.stopPropagation();
+                    }
+                    form.classList.add('was-validated');
+                }, false);
+            });
+        })();
+    </script>
+}

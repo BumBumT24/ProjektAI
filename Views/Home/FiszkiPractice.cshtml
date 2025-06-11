@@ -1,0 +1,65 @@
+﻿@model ProjektCRUD20510.Models.ViewModels.FiszkiPracticeViewModel
+
+@{
+    ViewData["Title"] = "Ćwiczenie z Fiszek";
+}
+
+<div class="container">
+    <h1 class="mb-4">Fiszki</h1>
+    <h4 class="mb-2">Karta @Model.CurrentIndex z @Model.TotalCount</h4>
+    <hr />
+    <div class="row justify-content-center">
+        <div class="col-md-6">
+            <div class="card mx-auto text-center" id="flashcard" style="cursor: pointer;">
+                <div class="card-body">
+                    <h5 class="card-title">
+                        @if (Model.Direction == "EngToPol")
+                        {
+                            @Model.CurrentFiszka.Nazwa_ENGLISH
+                        }
+                        else
+                        {
+                            @Model.CurrentFiszka.Nazwa_PL
+                        }
+                    </h5>
+                    <p class="card-text translation" style="display: none;">
+                        @if (Model.Direction == "EngToPol")
+                        {
+                            @Model.CurrentFiszka.Nazwa_PL
+                        }
+                        else
+                        {
+                            @Model.CurrentFiszka.Nazwa_ENGLISH
+                        }
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="text-center mt-4">
+        <div class="d-inline-block">
+            <!-- Wrap button in a div with d-inline-block -->
+            <a asp-action="NextFiszka" asp-controller="Home" class="btn btn-primary">Następna fiszka</a>
+        </div>
+    </div>
+    <div class="mt-3">
+        <a asp-action="Index" asp-controller="Home" class="btn btn-secondary">Powrót</a>
+    </div>
+</div>
+
+@section Scripts {
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            const flashcard = document.getElementById('flashcard');
+            const translation = document.querySelector('.translation');
+
+            flashcard.addEventListener('click', function () {
+                if (translation.style.display === 'none') {
+                    translation.style.display = 'block';
+                } else {
+                    translation.style.display = 'none';
+                }
+            });
+        });
+    </script>
+}

@@ -1,0 +1,49 @@
+﻿@model ProjektCRUD20510.Models.Wynik
+
+@{
+    ViewData["Title"] = "Create";
+}
+
+<h1>Dodaj</h1>
+
+<h4>Wynik</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="Create" asp-controller="Wynik">
+            <div asp-validation-summary="All" class="text-danger"></div>
+            <div class="form-group">
+                <label asp-for="Id_Testu" class="control-label">Test</label>
+                <select asp-for="Id_Testu" class="form-control"
+                        asp-items="@(ViewData["Id_Testu"] as SelectList)" required>
+                    <option value="">Wybierz test</option>
+                </select>
+                <span asp-validation-for="Id_Testu" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Id_Uzytkownika" class="control-label">User</label>
+                <select asp-for="Id_Uzytkownika" class="form-control"
+                        asp-items="@(ViewData["Id_Uzytkownika"] as SelectList)" required>
+                    <option value="">Wybierz użytkownika</option>
+                </select>
+                <span asp-validation-for="Id_Uzytkownika" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Id_Kategorii" class="control-label">Category</label>
+                <select asp-for="Id_Kategorii" class="form-control"
+                        asp-items="@(ViewData["Id_Kategorii"] as SelectList)" required>
+                    <option value="">Select Category</option>
+                </select>
+                <span asp-validation-for="Id_Kategorii" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="wynik" class="control-label">Wynik</label>
+                <input asp-for="wynik" class="form-control" required />
+                <span asp-validation-for="wynik" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Dodaj" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>

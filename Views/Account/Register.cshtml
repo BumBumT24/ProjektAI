@@ -1,0 +1,39 @@
+﻿@model ProjektCRUD20510.Models.Class
+
+@{
+    ViewData["Title"] = "Register";
+}
+
+<div class="d-flex justify-content-center align-items-center" style="margin: 15%; padding: 3rem 1rem;">
+    <div class="card p-3 shadow-sm" style="width: 100%; max-width: 360px; border-radius: 10px;">
+        <h4 class="text-center mb-3">Rejestracja</h4>
+        <form asp-action="Register" method="post">
+            <div asp-validation-summary="ModelOnly" class="text-danger small mb-2"></div>
+
+            <div class="form-group mb-2">
+                <label asp-for="Nazwa" class="form-label">Nazwa</label>
+                <input asp-for="Nazwa" class="form-control form-control-sm" required />
+                <span asp-validation-for="Nazwa" class="text-danger"></span>
+            </div>
+
+            <div class="form-group mb-3">
+                <label asp-for="Haslo" class="form-label">Hasło</label>
+                <input asp-for="Haslo" type="password" class="form-control form-control-sm" required />
+                <span asp-validation-for="Haslo" class="text-danger"></span>
+            </div>
+
+            <div class="form-group text-center">
+                <input type="submit" value="Zarejestruj się" class="btn btn-success btn-sm w-100 mb-2" />
+            </div>
+            <div class="form-group text-center">
+                <a asp-action="Login" asp-controller="Account" class="btn btn-primary btn-sm w-100">Powrót do logowania</a>
+            </div>
+        </form>
+    </div>
+</div>
+
+@section Scripts {
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+}

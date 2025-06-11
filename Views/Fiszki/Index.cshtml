@@ -1,0 +1,65 @@
+﻿@model IEnumerable<ProjektCRUD20510.Models.Fiszki>
+
+@{
+    ViewData["Title"] = "Flashcard List";
+    int currentUserId = int.Parse(User.FindFirst(System.Security.Claims.ClaimTypes.NameIdentifier)?.Value ?? "0");
+}
+
+<div class="container">
+    <h1 class="mb-4">Fiszki</h1>
+    <p>
+        <a asp-action="Create" asp-controller="Fiszki" class="btn btn-primary">Dodaj fiszke</a>
+    </p>
+    @if (Model.Any())
+    {
+        <table class="table table-striped table-hover">
+            <thead>
+                <tr>
+                    <th>
+                        @Html.DisplayNameFor(model => model.Nazwa_PL)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.Nazwa_ENGLISH)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.Uzytkownik)
+                    </th>
+                    <th style="width: 25%;">Akcje</th> <!-- Fixed width for action column -->
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var item in Model)
+                {
+                    <tr>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Nazwa_PL)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Nazwa_ENGLISH)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Uzytkownik.Nazwa)
+                        </td>
+                        <td>
+                            @if (User.IsInRole("Admin") || item.Id_Uzytkownika == currentUserId)
+                            {
+                                <a asp-action="Edit" asp-controller="Fiszki" asp-route-id="@item.Id" class="btn btn-primary btn-sm me-1">Edytuj</a>
+                            }
+                            <a asp-action="Details" asp-controller="Fiszki" asp-route-id="@item.Id" class="btn btn-primary btn-sm me-1">Szczegóły</a>
+                            @if (User.IsInRole("Admin") || item.Id_Uzytkownika == currentUserId)
+                            {
+                                <a asp-action="Delete" asp-controller="Fiszki" asp-route-id="@item.Id" class="btn btn-primary btn-sm me-1">Usuń</a>
+                            }
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    }
+    else
+    {
+        <div class="alert alert-warning" role="alert">
+            No flashcards available. Create one to get started!
+        </div>
+    }
+</div>

@@ -1,0 +1,42 @@
+﻿@model IEnumerable<ProjektCRUD20510.Models.Testy_Uzytkownik>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h1>Index</h1>
+
+<p>
+    <a asp-action="Create" asp-controller="Testy_Uzytkownik">Create New</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Test)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Uzytkownik)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Test.NazwaTestu)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Uzytkownik.Nazwa)
+                </td>
+                <td>
+                    <a asp-action="Edit" asp-controller="Testy_Uzytkownik" asp-route-id_testu="@item.Id_Testu" asp-route-id_uzytkownika="@item.Id_Uzytkownika">Edit</a> |
+                    <a asp-action="Details" asp-controller="Testy_Uzytkownik" asp-route-id_testu="@item.Id_Testu" asp-route-id_uzytkownika="@item.Id_Uzytkownika">Details</a> |
+                    <a asp-action="Delete" asp-controller="Testy_Uzytkownik" asp-route-id_testu="@item.Id_Testu" asp-route-id_uzytkownika="@item.Id_Uzytkownika">Delete</a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>

@@ -1,0 +1,37 @@
+﻿@{
+    ViewData["Title"] = "Login";
+}
+
+<div class="d-flex justify-content-center align-items-center" style="margin: 15%; padding: 3rem 1rem;">
+    <div class="card p-3 shadow-sm" style="width: 100%; max-width: 360px; border-radius: 10px;">
+        <h4 class="text-center mb-3">Logowanie</h4>
+        <form asp-action="Login" method="post">
+            <div asp-validation-summary="ModelOnly" class="text-danger small mb-2"></div>
+
+            <div class="form-group mb-2">
+                <label for="nazwa" class="form-label">Nazwa</label>
+                <input name="nazwa" class="form-control form-control-sm" />
+            </div>
+
+            <div class="form-group mb-3">
+                <label for="haslo" class="form-label">Hasło</label>
+                <input name="haslo" class="form-control form-control-sm" type="password" />
+            </div>
+
+            <input type="hidden" name="returnUrl" value="@ViewData["ReturnUrl"]" />
+
+            <div class="form-group text-center">
+                <input type="submit" value="Zaloguj się" class="btn btn-primary btn-sm w-100 mb-2" />
+            </div>
+            <div class="form-group text-center">
+                <a asp-action="Register" asp-controller="Account" class="btn btn-success btn-sm w-100">Zarejestruj się</a>
+            </div>
+        </form>
+    </div>
+</div>
+
+@section Scripts {
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+}

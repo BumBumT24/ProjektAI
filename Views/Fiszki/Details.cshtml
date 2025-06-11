@@ -1,0 +1,43 @@
+﻿@model ProjektCRUD20510.Models.Fiszki
+@using System.Security.Claims
+
+@{
+    ViewData["Title"] = "Flashcard Details";
+    int currentUserId = int.Parse(User.FindFirst(ClaimTypes.NameIdentifier)?.Value ?? "0");
+}
+
+<div class="container">
+    <h1 class="mb-4">Szczegóły fiszki</h1>
+    <hr />
+    <div class="card">
+        <div class="card-body">
+            <dl class="row">
+                <dt class="col-sm-3">
+                    @Html.DisplayNameFor(model => model.Nazwa_PL)
+                </dt>
+                <dd class="col-sm-9">
+                    @Html.DisplayFor(model => model.Nazwa_PL)
+                </dd>
+                <dt class="col-sm-3">
+                    @Html.DisplayNameFor(model => model.Nazwa_ENGLISH)
+                </dt>
+                <dd class="col-sm-9">
+                    @Html.DisplayFor(model => model.Nazwa_ENGLISH)
+                </dd>
+                <dt class="col-sm-3">
+                    @Html.DisplayNameFor(model => model.Uzytkownik)
+                </dt>
+                <dd class="col-sm-9">
+                    @Html.DisplayFor(model => model.Uzytkownik.Nazwa)
+                </dd>
+            </dl>
+        </div>
+    </div>
+    <div class="mt-3">
+        @if (User.IsInRole("Admin") || Model.Id_Uzytkownika == currentUserId)
+        {
+            <a asp-action="Edit" asp-controller="Fiszki" asp-route-id="@Model?.Id" class="btn btn-primary me-2">Edytuj</a>
+        }
+        <a asp-action="Index" asp-controller="Fiszki" class="btn btn-secondary">Powrót</a>
+    </div>
+</div>

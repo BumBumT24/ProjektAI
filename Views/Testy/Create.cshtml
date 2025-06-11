@@ -1,0 +1,40 @@
+﻿@model ProjektCRUD20510.Models.Testy
+
+@{
+    ViewData["Title"] = "Create";
+}
+
+<h1>Dodaj</h1>
+
+<h4>Testy</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="Create" asp-controller="Testy">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                <label asp-for="Id_Kategorii" class="control-label"></label>
+                <select asp-for="Id_Kategorii" class="form-control" asp-items="ViewBag.Id_Kategorii"></select>
+                <span asp-validation-for="Id_Kategorii" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="NazwaTestu" class="control-label"></label>
+                <input asp-for="NazwaTestu" class="form-control" />
+                <span asp-validation-for="NazwaTestu" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Create" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-action="Index" asp-controller="Testy">Powrót</a>
+</div>
+
+@section Scripts {
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+}

@@ -1,0 +1,36 @@
+﻿@model IEnumerable<ProjektCRUD20510.Models.Kategorie>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h1>Kategorie</h1>
+
+<p>
+    <a asp-action="Create" asp-controller="Kategorie" class="btn btn-primary btn-sm">Dodaj kategorie</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Nazwa)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Nazwa)
+                </td>
+                <td>
+                    <a asp-action="Edit" asp-controller="Kategorie" asp-route-id="@item.Id" class="btn btn-primary btn-sm">Edytuj</a> |
+                    <a asp-action="Details" asp-controller="Kategorie" asp-route-id="@item.Id" class="btn btn-primary btn-sm">Szczegóły</a> |
+                    <a asp-action="Delete" asp-controller="Kategorie" asp-route-id="@item.Id" class="btn btn-primary btn-sm">Usuń</a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>

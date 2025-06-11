@@ -1,0 +1,40 @@
+﻿@model ProjektCRUD20510.Models.Fiszki
+
+@{
+    ViewData["Title"] = "Delete Flashcard";
+}
+
+<div class="container">
+    <h1 class="mb-4">Usun fiszke</h1>
+    <h3 class="text-danger">Czy jesteś pewien że chcesz usunąć fiszke?</h3>
+    <hr />
+    <div class="card">
+        <div class="card-body">
+            <dl class="row">
+                <dt class="col-sm-3">
+                    @Html.DisplayNameFor(model => model.Nazwa_PL)
+                </dt>
+                <dd class="col-sm-9">
+                    @Html.DisplayFor(model => model.Nazwa_PL)
+                </dd>
+                <dt class="col-sm-3">
+                    @Html.DisplayNameFor(model => model.Nazwa_ENGLISH)
+                </dt>
+                <dd class="col-sm-9">
+                    @Html.DisplayFor(model => model.Nazwa_ENGLISH)
+                </dd>
+                <dt class="col-sm-3">
+                    @Html.DisplayNameFor(model => model.Uzytkownik)
+                </dt>
+                <dd class="col-sm-9">
+                    @Html.DisplayFor(model => model.Uzytkownik.Nazwa)
+                </dd>
+            </dl>
+        </div>
+    </div>
+    <form asp-action="DeleteConfirmed" asp-controller="Fiszki" class="mt-3">
+        <input type="hidden" asp-for="Id" />
+        <input type="submit" value="Delete" class="btn btn-danger" /> |
+        <a asp-action="Index" asp-controller="Fiszki" class="btn btn-secondary">Powrót</a>
+    </form>
+</div>

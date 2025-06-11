@@ -1,0 +1,65 @@
+﻿@model ProjektCRUD20510.Models.ViewModels.TestResultViewModel
+
+@{
+    ViewData["Title"] = "Wynik Testu";
+}
+
+<div class="container">
+    <h1 class="mb-4">Wynik testu</h1>
+    <h4>Test: @Model.TestName</h4>
+    <h5 class="mb-4">Wynik: <span class="text-success">@Model.CorrectCount</span> / @Model.TotalCount</h5>
+    <hr />
+    @if (Model.Answers.Any())
+    {
+        <table class="table table-striped table-hover">
+            <thead>
+                <tr>
+                    <th>Pytanie</th>
+                    <th>Twoja odpowiedź</th>
+                    <th>Poprawna odpowiedź</th>
+                    <th>Wynik</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var answer in Model.Answers)
+                {
+                    <tr>
+                        <td>
+                            @if (Model.Direction == "EngToPol")
+                            {
+                                @answer.Fiszka.Nazwa_ENGLISH
+                            }
+                            else
+                            {
+                                @answer.Fiszka.Nazwa_PL
+                            }
+                        </td>
+                        <td>@answer.UserAnswer</td>
+                        <td>
+                            @if (Model.Direction == "EngToPol")
+                            {
+                                @answer.Fiszka.Nazwa_PL
+                            }
+                            else
+                            {
+                                @answer.Fiszka.Nazwa_ENGLISH
+                            }
+                        </td>
+                        <td class="@(answer.IsCorrect ? "correct" : "incorrect")">
+                            @(answer.IsCorrect ? "Poprawna" : "Niepoprawna")
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    }
+    else
+    {
+        <div class="alert alert-warning" role="alert">
+            Brak odpowiedzi do wyświetlenia.
+        </div>
+    }
+    <div class="mt-3">
+        <a asp-action="Index" asp-controller="Testy" class="btn btn-secondary">Powrót</a>
+    </div>
+</div>

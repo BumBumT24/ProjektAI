@@ -1,0 +1,71 @@
+﻿@model ProjektCRUD20510.Models.Testy_Uzytkownik
+
+@{
+    ViewData["Title"] = "Create";
+}
+
+<h1>Create</h1>
+
+<h4>Testy_Uzytkownik</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="Create" asp-controller="Testy_Uzytkownik" method="post">
+            <div asp-validation-summary="All" class="text-danger"></div>
+
+            <div class="form-group">
+                <label asp-for="Id_Testu" class="control-label">Test</label>
+                @if (ViewBag.Id_Testu != null)
+                {
+                    <select asp-for="Id_Testu" class="form-control" asp-items="ViewBag.Id_Testu" required>
+                        <option value="">-- Select Test --</option>
+                    </select>
+                }
+                else
+                {
+                    <p class="text-danger">No tests available. Please create tests first.</p>
+                }
+                <span asp-validation-for="Id_Testu" class="text-danger"></span>
+            </div>
+
+            <div class="form-group">
+                <label asp-for="Id_Uzytkownika" class="control-label">User</label>
+                @if (ViewBag.Id_Uzytkownika != null)
+                {
+                    <select asp-for="Id_Uzytkownika" class="form-control" asp-items="ViewBag.Id_Uzytkownika" required>
+                        <option value="">-- Select User --</option>
+                    </select>
+                }
+                else
+                {
+                    <p class="text-danger">No users available. Please create users first.</p>
+                }
+                <span asp-validation-for="Id_Uzytkownika" class="text-danger"></span>
+            </div>
+
+            <div class="form-group">
+                <input type="submit" value="Create" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-action="Index" asp-controller="Testy_Uzytkownik">Back to List</a>
+</div>
+
+@section Scripts {
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.19.3/jquery.validate.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validation-unobtrusive/3.2.12/jquery.validate.unobtrusive.min.js"></script>
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+    <script>
+        $(document).ready(function () {
+            $("form").on("submit", function () {
+                console.log("Form submitted");
+            });
+        });
+    </script>
+}
